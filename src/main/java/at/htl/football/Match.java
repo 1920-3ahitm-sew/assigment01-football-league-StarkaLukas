@@ -30,10 +30,20 @@ public class Match {
     }
 
     public int getHomePoints() {
-        return 0;
+        if (this.homeGoals < this.guestGoals) {
+            return 0;
+        } else if (this.homeGoals > this.guestGoals) {
+            return 3;
+        }
+        return 1;
     }
 
     public int getGuestPoints() {
-        return 0;
+        if (this.homeGoals < this.guestGoals) {
+            return 3;
+        } else if (this.homeGoals > this.guestGoals) {
+            return 0;
+        }
+        return 1;
     }
 }

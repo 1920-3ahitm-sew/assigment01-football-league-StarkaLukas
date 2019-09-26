@@ -15,25 +15,25 @@ public class Team implements Comparable<Team> {
 
     public void addMatch(Match match) {
         if (this.name.equals(match.getHomeName())) {
-            addStats(match.getHomeGoals(), match.getGuestGoals());
+            addStats(match.getHomePoints(), match.getHomeGoals(), match.getGuestGoals());
         } else if (this.name.equals(match.getGuestName())) {
-            addStats(match.getGuestGoals(), match.getHomeGoals());
+            addStats(match.getGuestPoints(), match.getGuestGoals(), match.getHomeGoals());
         }
     }
 
-    private void addStats(int goalsShot, int goalsReceived) {
-        if (goalsShot - goalsReceived < 0) {
-            this.defeats++;
-        } else if (goalsShot - goalsReceived > 0) {
+    private void addStats(int pointsTeam, int goalsForTeam, int goalsReceivedFrom) {
+        if (pointsTeam == 3) {
             this.wins++;
             this.points += 3;
-        }else{
+        } else if (pointsTeam == 1) {
             this.draws++;
             this.points += 1;
+        }else{
+            this.defeats++;
         }
 
-        this.goalsShot += goalsShot;
-        this.goalsReceived += goalsReceived;
+        this.goalsShot += goalsForTeam;
+        this.goalsReceived += goalsReceivedFrom;
     }
 
     public String getName() {
